@@ -1033,6 +1033,59 @@ h1 {
     display:grid;
 }
 
+    /* ==========================================================================
+   3. RESPONSIVE LAYER (UNTUK TAMPILAN HP)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+    /* 1. Berikan kelonggaran padding di HP agar konten tidak mepet */
+    .page {
+        padding: 30px 5% 100px 5%;
+    }
+
+    /* 2. Ubah susunan Hero Home menjadi vertikal (atas-bawah) */
+    .hero {
+        flex-direction: column-reverse; /* Foto di atas, teks di bawah */
+        justify-content: center;
+        text-align: center;
+        gap: 20px;
+        height: auto;
+        margin-top: 20px;
+    }
+
+    .hero-text h1 {
+        font-size: 2.5rem; /* Perkecil ukuran font judul di HP */
+    }
+
+    .hero-text p {
+        margin: 15px auto 30px;
+    }
+
+    .img-wrapper {
+        width: 200px; /* Perkecil ukuran bingkai foto di HP */
+        height: 200px;
+    }
+
+    /* 3. SOLUSI UTAMA HALAMAN 2: Ubah layout About menjadi vertikal ke bawah */
+    .about-grid {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .about-card {
+        min-width: 100%; /* Kartu informasi mahasiswa memenuhi lebar layar HP */
+    }
+
+    /* 4. Ubah grid skill menjadi 1 kolom saja di HP agar tidak sempit */
+    .skills-box {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+    
+    .skill-item {
+        padding: 15px;
+    }
+}
+
     </style>
 </head>
 <body>
