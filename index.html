@@ -10,1167 +10,950 @@
 
     
 <style>
-        /* Reset & Tema Premium Dark */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
 
-        body {
-            background-color: #0b0f19;
-            color: #e2e8f0;
-            overflow: hidden; /* Mencegah scroll global body */
-            height: 100vh;
-        }
+/* ===================================================
+   1. GLOBAL RESET + DARK THEME
+   Mengatur tampilan dasar seluruh website
+=================================================== */
 
-        /* Navbar Glassmorphism */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 10%;
-            background: rgba(11, 15, 25, 0.8);
-            backdrop-filter: blur(10px);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
 
-        .logo {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 1.6rem;
-            color: #00f2fe;
-            font-weight: bold;
-            text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
-        }
+body{
+    background:#0b0f19;
+    color:#e2e8f0;
+    /* Mencegah geser horizontal */
+    overflow-x:hidden;
+    /* Tinggi lebih stabil di HP */
+    min-height:100dvh;
+}
 
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
+/* Desktop */
+@media (min-width:769px){
+    body{
+        min-height:100vh;
+    }
+}
 
-        nav ul li { margin-left: 35px; }
+/* ===================================================
+   2. TYPOGRAPHY
+   Heading & teks global
+=================================================== */
 
-        nav ul li a {
-            color: #94a3b8;
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-        }
+h1{
+    font-size:2.5rem;
+    letter-spacing:2px;
+    color:#00ff66;
+    text-shadow:0 0 15px rgba(0,255,102,.3);
+}
 
-        nav ul li a:hover, nav ul li a.active-nav {
-            color: #00f2fe;
-        }
+h2{
+    font-size:2rem;
+    color:#fff;
+    margin-bottom:30px;
+}
 
-        /* Kontainer Utama Halaman */
-        .main-content {
-            margin-top: 80px;
-            height: calc(100vh - 80px);
-            position: relative;
-        }
+h2 span{
+    color:#00f2fe;
+    font-family:'Share Tech Mono',monospace;
+}
 
-        /* Base Styling untuk Setiap Halaman Terpisah */
-        .page {
-            display: none; /* Sembunyikan halaman default */
-            padding: 40px 10%;
-            height: 100%;
-            width: 100%;
-            overflow-y: auto; /* Scroll hanya aktif di dalam halaman jika konten panjang */
-        }
+.subtitle{
+    color:#8a8a93;
+    font-size:.9rem;
+    line-height:1.7;
+    margin-bottom:50px;
+}
 
-        /* Class untuk Memunculkan Halaman + Animasi Transisi */
-        .page.active {
-            display: block;
-            animation: pageTransition 0.6s forwards ease-in-out;
-        }
+/* ===================================================
+   3. NAVBAR
+   Navigasi Atas (Glassmorphism)
+=================================================== */
 
-        /* Efek Animasi Klik (Masuk dari bawah + Fade In) */
-        @keyframes pageTransition {
-            from {
-                opacity: 0;
-                transform: translateY(30px) scale(0.98);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:20px 10%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(11,15,25,.8);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,.05);
+    z-index:1000;
+}
 
-        /* --- TAMPILAN HALAMAN 1: HOME (Pas di Layar/Tidak Scroll) --- */
-        .hero {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 80%; /* Pas di tengah layar */
-            gap: 40px;
-        }
+/* Logo Website */
+.logo{
+    font-family:'Share Tech Mono',monospace;
+    font-size:1.6rem;
+    font-weight:700;
 
-        .hero-text h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: #fff;
-            line-height: 1.2;
-        }
+    color:#00f2fe;
+    text-shadow:0 0 10px rgba(0,242,254,.5);
+}
 
-        .hero-text h1 span { color: #00f2fe; }
-        .hero-text p { color: #94a3b8; margin: 15px 0 30px; font-size: 1.1rem; max-width: 500px; }
+/* Menu Navigasi */
+nav ul{
+    display:flex;
+    gap:35px;
+    list-style:none;
+    flex-wrap:wrap;
+}
 
-        .img-wrapper {
-            width: 280px;
-            height: 280px;
-            position: relative;
-        }
+nav ul li{
+    margin:0;
+}
 
-        .img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 24px;
-            border: 2px solid rgba(0, 242, 254, 0.3);
-            position: relative;
-            z-index: 2;
-        }
+/* Link Menu */
+nav ul li a{
+    color:#94a3b8;
+    text-decoration:none;
+    text-transform:uppercase;
+    font-size:.95rem;
+    letter-spacing:1px;
+    cursor:pointer;
+    transition:color .3s ease;
+}
 
-        .img-wrapper::before {
-            content: '';
-            position: absolute;
-            top: -12px;
-            left: -12px;
-            width: 100%;
-            height: 100%;
-            border: 2px solid #00f2fe;
-            border-radius: 24px;
-            z-index: 1;
-        }
+/* Hover & Menu Aktif */
+nav ul li a:hover,
+nav ul li a.active-nav{
+    color:#00f2fe;
+}
 
-        /* --- TAMPILAN HALAMAN 2: ABOUT & SKILLS --- */
-        .about-grid {
-            display: flex;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
+/* ===================================================
+   4. MAIN CONTENT
+   Area Konten Seluruh Halaman
+=================================================== */
 
-        .about-card {
-            background: #111827;
-            padding: 30px;
-            border-radius: 16px;
-            flex: 1;
-            min-width: 300px;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
+.main-content{
+    position:relative;
+    margin-top:70px;
+    min-height:calc(100dvh - 70px);
+    height:auto;
+}
 
-        .about-card table { width: 100%; border-collapse: collapse; }
-        .about-card td { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .about-card td strong { color: #00f2fe; }
+/* ===================================================
+   PAGE SYSTEM
+   Mengatur Pergantian Halaman
+=================================================== */
 
-        .skills-box {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            flex: 1;
-        }
+.page{
+    display:none;
+    width:100%;
+    min-height:100%;
+    padding:24px 10% 70px;
+    overflow-y:visible;
+}
 
-        .skill-item {
-            background: #111827;
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-            border: 1px solid rgba(0, 242, 254, 0.1);
-            font-weight: 600;
-            transition: 0.3s;
-        }
-        .skill-item:hover { border-color: #00f2fe; color: #00f2fe; }
+/* Halaman aktif */
+.page.active{
+    display:block;
+    animation:pageTransition .6s ease forwards;
+}
 
-        /* --- TAMPILAN HALAMAN 3: SERTIFIKAT (Terpisah) --- */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
-        }
+/* Animasi Transisi */
+@keyframes pageTransition{
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(.99);
+    }
 
-        .cert-card {
-            background: #111827;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: 0.3s;
-        }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
 
-        .cert-card:hover {
-            transform: translateY(-5px);
-            border-color: #00f2fe;
-        }
+/* ===================================================
+   5. HERO SECTION
+   Halaman Home / Landing
+=================================================== */
 
-        .cert-img-placeholder {
-            height: 160px;
-            background: linear-gradient(45deg, #151f32, #0b0f19);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #475569;
-            font-family: 'Share Tech Mono', monospace;
-        }
+.hero{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    min-height:70vh;
+    flex-wrap:wrap;
+}
 
-        .cert-info { padding: 20px; }
-        .cert-info h3 { font-size: 1.1rem; color: #fff; margin-bottom: 5px; }
-        .cert-info p { color: #94a3b8; font-size: 0.85rem; }
+/* Area Text Hero */
+.hero-text{
+    flex:1;
+    min-width:280px;
+}
 
-        /* Tombol Link */
-        .btn {
-            padding: 10px 20px;
-            background: linear-gradient(45deg, #00f2fe, #4facfe);
-            color: #0b0f19;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 600;
-            display: inline-block;
-            margin-top: 15px;
-            font-size: 0.85rem;
-        }
+/* Judul Besar */
+.hero-text h1{
+    font-size:clamp(2.4rem,6vw,3.5rem);
+    font-weight:800;
+    line-height:1.2;
+    color:#fff;
+}
 
-        /* Judul Section */
-        h2 { font-size: 2rem; color: #fff; margin-bottom: 30px; }
-        h2 span { color: #00f2fe; font-family: 'Share Tech Mono', monospace; }
+/* Highlight nama */
+.hero-text h1 span{
+    color:#00f2fe;
+}
 
-        /* Footer Tetap di Bawah */
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            text-align: center;
-            padding: 15px;
-            background: #070a12;
-            font-size: 0.85rem;
-            color: #475569;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
+/* Deskripsi */
+.hero-text p{
+    max-width:500px;
+    margin:12px 0 20px;
+    color:#94a3b8;
+    font-size:1.1rem;
+    line-height:1.8;
+}
 
-        /* --- STYLE BARU: SUB-TAB INTERNAL DI HOME --- */
-        .home-tabs {
-            display: flex;
-            gap: 12px;
-            margin: 20px 0 15px 0;
-        }
+/* ===================================================
+   FOTO PROFIL HERO
+=================================================== */
 
-        .sub-tab-btn {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: #94a3b8;
-            padding: 8px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: 0.3s;
-        }
+.img-wrapper{
+    position:relative;
+    width:280px;
+    height:280px;
+    flex-shrink:0;
+}
 
-        .sub-tab-btn:hover, .sub-tab-btn.active-sub {
-            border-color: #00f2fe;
-            color: #00f2fe;
-            background: rgba(0, 242, 254, 0.05);
-            box-shadow: 0 0 10px rgba(0, 242, 254, 0.1);
-        }
+/* Foto */
+.img-wrapper img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    border-radius:24px;
+    border:2px solid rgba(0,242,254,.3);
+    position:relative;
+    z-index:2;
+}
 
-        .sub-content {
-            display: none;
-            animation: subFadeIn 0.4s ease-in-out forwards;
-        }
+/* Bingkai Neon Belakang */
+.img-wrapper::before{
+    content:'';
+    position:absolute;
+    top:-12px;
+    left:-12px;
+    width:100%;
+    height:100%;
+    border:2px solid #00f2fe;
+    border-radius:24px;
+    z-index:1;
+}
 
-        .sub-content.active-content {
-            display: block;
-        }
+/* ===================================================
+   RESPONSIVE MOBILE
+   Optimasi Tampilan HP
+=================================================== */
 
-        @keyframes subFadeIn {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+@media (max-width:768px){
 
-        /* Tampilan Grid Mini-Stats */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            max-width: 400px;
-            margin-top: 10px;
-        }
+    /* Navbar */
+    nav{
+        padding:16px 6%;
+    }
 
-        .stat-box {
-            background: #111827;
-            padding: 12px 15px;
-            border-radius: 10px;
-            border-left: 3px solid #00f2fe;
-            border-top: 1px solid rgba(255,255,255,0.02);
-        }
+    /* Konten */
+    .main-content{
+        margin-top:95px;
+    }
 
-        .stat-box h4 { font-size: 1.3rem; color: #fff; font-family: 'Share Tech Mono', monospace; }
-        .stat-box p { font-size: 0.8rem; color: #94a3b8; margin: 0; }
+    .page{
+        padding:30px 6%;
+    }
 
-        /* ===================================================
-           STYLE KHUSUS HP (Akan aktif kalau layar < 768px)
-           =================================================== */
-        @media (max-width: 768px) {
-            /* 1. Atur ulang Navigasi (Navbar) agar tidak sesak */
-            nav {
-                padding: 15px 5%;
-            }
-            .logo {
-                font-size: 1.2rem; /* Ukuran logo disesuaikan */
-            }
-            nav ul li {
-                margin-left: 15px; /* Jarak antar menu diperkecil */
-            }
-            nav ul li a {
-                font-size: 0.75rem; /* Ukuran teks menu diperkecil */
-            }
+    /* Hero */
+    .hero{
+        flex-direction:column-reverse;
+        text-align:center;
+        min-height:auto;
+    }
 
-            /* 2. Susun ulang Halaman Utama (Hero Section) */
-            .hero {
-                flex-direction: column; /* Teks dan Foto disusun vertikal atas-bawah */
-                justify-content: flex-start;
-                text-align: center; /* Teks dibuat rata tengah */
-                gap: 30px;
-                height: auto; /* Tingginya otomatis mengikuti konten */
-                padding-top: 20px;
-            }
+    .hero-text h1{
+        font-size:2.3rem;
+    }
 
-            .hero-text h1 {
-                font-size: 2.2rem; /* Ukuran nama diperkecil agar tidak terpotong */
-            }
+    .hero-text p{
+        max-width:100%;
+        font-size:1rem;
+    }
 
-            .hero-text p {
-                margin: 15px auto;
-                font-size: 0.95rem;
-            }
+    /* Foto */
+    .img-wrapper{
+        width:220px;
+        height:220px;
+    }
 
-            /* Membuat tombol sub-tab rapi di tengah */
-            .home-tabs {
-                justify-content: center;
-                flex-wrap: wrap; /* Kalau layar kekecilan, tombol otomatis turun ke bawah */
-                gap: 8px;
-            }
-
-            .sub-tab-btn {
-                padding: 6px 12px;
-                font-size: 0.8rem;
-            }
-
-            /* 3. Atur Posisi Foto Profil di HP */
-            .hero-img-box {
-                display: flex;
-                justify-content: center;
-                width: 100%;
-                margin-bottom: 40px; /* Jarak aman dari footer */
-            }
-
-            .img-wrapper {
-                width: 200px; /* Ukuran foto dikecilkan sedikit di HP */
-                height: 200px;
-            }
-        }
-
-        /* ===================================================
-   KUNCI UTAMA: MENYEMBUNYIKAN & MEMUNCUKKAN SUB-PAGE
+}
+/* ===================================================
+   5. SUB-TABS INTERN & MINI STATS
    =================================================== */
-.sub-page-container {
-    position: relative;
-    width: 100%;
+
+.home-tabs{
+    display:flex;
+    gap:12px;
+    margin:16px 0 12px;
+    flex-wrap:wrap;
 }
 
-.sub-page {
-    display: none; /* INI KUNCINYA: Menyembunyikan halaman 2 secara default */
-    width: 100%;
+.sub-tab-btn{
+background:rgba(255,255,255,.02);
+border:1px solid rgba(255,255,255,.08);
+color:#94a3b8;
+padding:10px 16px;
+border-radius:20px;
+cursor:pointer;
+font-size:.85rem;
+font-weight:600;
+transition:.3s;
+white-space:nowrap;
 }
 
-/* Hanya munculkan sub-page yang memiliki class active-sub-page */
-.sub-page.active-sub-page {
-    display: block; 
-    animation: subPageFade 0.4s ease-in-out forwards;
+.sub-tab-btn:hover,
+.sub-tab-btn.active-sub{
+border-color:#00f2fe;
+color:#00f2fe;
+background:rgba(0,242,254,.05);
+box-shadow:0 0 10px rgba(0,242,254,.1);
 }
 
-@keyframes subPageFade {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
+.sub-content{
+display:none;
+animation:subFadeIn .4s ease forwards;
 }
 
-/* Desain Tempat Tombol Angka Navigasi di Bawah Konten */
-.sub-pagination {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 30px;
-    padding-bottom: 20px;
-    width: 100%;
+.sub-content.active-content{
+display:block;
 }
 
-/* Desain Tombol Angka Bulat */
-.sub-page-btn {
-    background: #111827;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #94a3b8;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-weight: 600;
-    transition: 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+@keyframes subFadeIn{
+from{
+opacity:0;
+transform:translateY(5px);
+}
+to{
+opacity:1;
+transform:none;
+}
 }
 
-/* Efek warna menyala saat tombol aktif / di-hover */
-.sub-page-btn:hover, .sub-page-btn.active-btn {
-    border-color: #00f2fe;
-    color: #00f2fe;
-    background: rgba(0, 242, 254, 0.08);
-    box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+.stats-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+width:100%;
+max-width:600px;
 }
 
-   body {
-  background-color: #0a0a0c;
-  color: #ffffff;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 40px 20px;
+.stat-box{
+background:#111827;
+padding:16px;
+border-radius:10px;
+border-left:3px solid #00f2fe;
 }
 
-.dashboard-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
+.stat-box h4{
+font-size:1.2rem;
+color:#fff;
+font-family:'Share Tech Mono',monospace;
 }
 
-h1 {
-  font-size: 2.5rem;
-  letter-spacing: 2px;
-  color: #00ff66;
-  text-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
+.stat-box p{
+font-size:.85rem;
+color:#94a3b8;
+margin-top:6px;
 }
 
-.subtitle {
-  color: #8a8a93;
-  margin-bottom: 50px;
+/* Pagination */
+
+.sub-page{
+display:none;
 }
 
-/* Pengaturan Swiper 3D */
-.swiper {
-  width: 100%;
-  padding-top: 50px;
-  padding-bottom: 50px;
+.sub-page.active-sub-page{
+display:block;
+animation:subPageFade .4s ease forwards;
 }
 
-.swiper-slide {
-  background-position: center;
-  background-size: cover;
-  width: 320px;
-  height: 400px;
+@keyframes subPageFade{
+from{
+opacity:0;
+transform:translateY(15px);
+}
+to{
+opacity:1;
+transform:none;
+}
 }
 
-/* Gaya Kartu Berpendar (Dashboard Style) */
-.card {
-  background: linear-gradient(145deg, #121216, #1a1a22);
-  border: 1px solid #2f2f38;
-  border-radius: 16px;
-  padding: 30px 20px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  text-align: left;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
+.sub-pagination{
+display:flex;
+justify-content:center;
+gap:10px;
+margin-top:30px;
+flex-wrap:wrap;
 }
 
-/* Garis Menyala Sesuai Kategori */
-.card.cyber { border-color: #00ff66; box-shadow: 0 0 10px rgba(0, 255, 102, 0.1); }
-.card.electrical { border-color: #ffaa00; box-shadow: 0 0 10px rgba(255, 170, 0, 0.1); }
-.card.content { border-color: #00ffff; box-shadow: 0 0 10px rgba(0, 255, 255, 0.1); }
-
-.badge {
-  font-size: 0.8rem;
-  font-weight: bold;
-  letter-spacing: 1px;
-  padding: 4px 10px;
-  border-radius: 20px;
-  width: max-content;
-}
-.cyber .badge { background: rgba(0, 255, 102, 0.2); color: #00ff66; }
-.electrical .badge { background: rgba(255, 170, 0, 0.2); color: #ffaa00; }
-.content .badge { background: rgba(0, 255, 255, 0.2); color: #00ffff; }
-
-.btn-detail {
-  background: transparent;
-  color: #fff;
-  border: 1px solid currentColor;
-  padding: 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: all 0.3s ease;
-}
-.btn-detail:hover {
-  background: #fff;
-  color: #000;
-  transform: scale(1.05);
+.sub-page-btn{
+background:#111827;
+border:1px solid rgba(255,255,255,.1);
+color:#94a3b8;
+width:38px;
+height:38px;
+border-radius:50%;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:.3s;
 }
 
-/* JENDELA POP-UP MODAL STYLING */
-.modal {
-  display: none; 
-  position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.85);
-  backdrop-filter: blur(5px);
+.sub-page-btn:hover,
+.sub-page-btn.active-btn{
+border-color:#00f2fe;
+color:#00f2fe;
+background:rgba(0,242,254,.08);
 }
 
-.modal-content {
-  background-color: #121216;
-  border: 2px solid #00ff66;
-  margin: 10% auto; padding: 30px;
-  width: 80%; max-width: 600px;
-  border-radius: 16px;
-  position: relative;
-  animation: zoomIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+/* ===================================================
+   6. ABOUT & SKILLS
+   =================================================== */
+
+.about-grid{
+display:flex;
+gap:30px;
+flex-wrap:wrap;
 }
 
-@keyframes zoomIn {
-  from { transform: scale(0.7); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+.about-card{
+background:#111827;
+padding:30px;
+border-radius:16px;
+flex:1;
+min-width:260px;
+border:1px solid rgba(255,255,255,.05);
+overflow:hidden;
 }
 
-.close-btn {
-  position: absolute; right: 20px; top: 15px;
-  color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer;
-}
-.close-btn:hover { color: #fff; }
-
-        /* ========================================== */
-/* 🎨 CSS GABUNGAN UNTUK DASHBOARD SERTIFIKAT */
-/* ========================================== */
-.dashboard-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 20px;
+.about-card table{
+width:100%;
 }
 
-h1 {
-    font-size: 2rem;
-    color: #00ff66;
-    text-shadow: 0 0 15px rgba(0, 255, 102, 0.3);
-    margin-bottom: 5px;
+.about-card td{
+padding:12px 0;
+word-break:break-word;
 }
 
-.subtitle {
-    color: #8a8a93;
-    font-size: 0.9rem;
-    margin-bottom: 30px;
+.about-card td strong{
+color:#00f2fe;
 }
 
-/* Pengaturan Ukuran Kontainer Slider 3D */
-.swiper {
-    width: 100%;
-    padding-top: 30px;
-    padding-bottom: 60px;
+.skills-box{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:15px;
+flex:1;
 }
 
-/* Pengaturan Dimensi Kotak Kartu */
-.swiper-slide {
-    width: 280px;
-    height: 380px;
+.skill-item{
+background:#111827;
+padding:20px;
+border-radius:12px;
+text-align:center;
+border:1px solid rgba(0,242,254,.1);
+transition:.3s;
 }
 
-/* Gaya Tampilan Kartu Teknologi Premium */
-.card {
-    background: linear-gradient(145deg, #121216, #1a1a22);
-    border: 1px solid #2f2f38;
-    border-radius: 16px;
-    padding: 25px 20px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: left;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
+.skill-item:hover{
+border-color:#00f2fe;
+color:#00f2fe;
 }
 
-/* Pendar Neon Berdasarkan Kategori Kompetensi */
-.card.cyber { border-color: #00ff66; box-shadow: 0 0 15px rgba(0, 255, 102, 0.05); }
-.card.electrical { border-color: #ffaa00; box-shadow: 0 0 15px rgba(255, 170, 0, 0.05); }
-.card.content { border-color: #00ffff; box-shadow: 0 0 15px rgba(0, 255, 255, 0.05); }
-.card.general { border-color: #a0a0a9; box-shadow: 0 0 15px rgba(160, 160, 169, 0.05); }
+/* ===================================================
+   7. DIGITAL ASSET VAULT
+   =================================================== */
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 242, 254, 0.2);
-}
-
-.badge {
-    font-size: 0.75rem;
-    font-weight: bold;
-    letter-spacing: 1px;
-    padding: 4px 10px;
-    border-radius: 20px;
-    width: max-content;
-    margin-bottom: 15px;
-}
-.cyber .badge { background: rgba(0, 255, 102, 0.15); color: #00ff66; }
-.electrical .badge { background: rgba(255, 170, 0, 0.15); color: #ffaa00; }
-.content .badge { background: rgba(0, 255, 255, 0.15); color: #00ffff; }
-.general .badge { background: rgba(160, 160, 169, 0.15); color: #a0a0a9; }
-
-.card h3 {
-    font-size: 1.1rem;
-    margin: 0 0 10px 0;
-    color: #ffffff;
-}
-
-.card p {
-    font-size: 0.85rem;
-    color: #a0a0a9;
-    line-height: 1.5;
-    margin: 0;
-    flex-grow: 1;
-}
-
-.btn-detail {
-    background: transparent;
-    color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 0.85rem;
-    margin-top: 15px;
-    transition: all 0.3s ease;
-    text-align: center;
-}
-.btn-detail:hover {
-    background: #ffffff;
-    color: #0a0a0c;
-    border-color: #ffffff;
-}
-
-/* TAMPILAN JENDELA POP-UP MODAL */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(5px);
-}
-
-.modal-content {
-    background-color: #121216;
-    border: 1px solid #2f2f38;
-    margin: 10% auto;
-    padding: 30px;
-    width: 85%;
-    max-width: 550px;
-    border-radius: 16px;
-    position: relative;
-    box-shadow: 0 0 30px rgba(0, 242, 254, 0.1);
-    animation: zoomIn 0.3s ease;
-}
-
-@keyframes zoomIn {
-    from { transform: scale(0.9); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-.close-btn {
-    position: absolute;
-    right: 20px;
-    top: 15px;
-    color: #8a8a93;
-    font-size: 24px;
-    cursor: pointer;
-}
-.close-btn:hover { color: #ffffff; }
-
-/* Kustomisasi Tombol Navigasi Swiper */
-.swiper-button-next, .swiper-button-prev {
-    color: #00f2fe !important;
-    transform: scale(0.7);
-}
-.swiper-pagination-bullet-active {
-    background: #00f2fe !important;
-}
-
-```css
-/* ========================= */
-/* ⚡ DIGITAL ASSET VAULT */
-/* ========================= */
-
-.vault-container{
-    padding:20px;
+.vault-container,
+.dashboard-container{
+max-width:1200px;
+margin:auto;
+padding:20px;
 }
 
 .vault-header{
-    text-align:center;
-    margin-bottom:25px;
+margin-bottom:25px;
+text-align:center;
 }
 
 .vault-header h1{
-    color:#00f2fe;
-    font-size:2rem;
-    margin-bottom:10px;
+font-size:2rem;
+color:#00f2fe;
 }
 
 .vault-header p{
-    color:#9ca3af;
-    font-size:0.95rem;
-    line-height:1.5;
+color:#9ca3af;
+line-height:1.7;
 }
-
-/* CATEGORY TAB */
 
 .vault-tabs{
-    display:flex;
-    gap:10px;
-    overflow-x:auto;
-    padding-bottom:10px;
-    margin-bottom:25px;
-}
-
-.vault-tabs::-webkit-scrollbar{
-    display:none;
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+justify-content:center;
 }
 
 .vault-tab{
-    border:none;
-    padding:12px 18px;
-    border-radius:14px;
-    background:#161b22;
-    color:#d1d5db;
-    cursor:pointer;
-    white-space:nowrap;
-    transition:0.3s;
-    font-weight:600;
+padding:10px 18px;
+border:none;
+border-radius:14px;
+background:#161b22;
+color:#d1d5db;
+cursor:pointer;
+font-weight:600;
+white-space:nowrap;
+transition:.3s;
 }
 
-.vault-tab:hover{
-    background:#1f2937;
-}
-
+.vault-tab:hover,
 .active-tab{
-    background:#00f2fe;
-    color:#000;
+background:#06b6d4;
+color:#fff;
 }
 
-/* GRID */
-
+.grid-container,
 .certificate-grid{
-    width:100%;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
 }
 
 .cert-category{
-    display:none;
-    grid-template-columns:1fr;
-    gap:18px;
+display:none;
 }
 
 .active-category{
-    display:grid;
+display:grid;
 }
 
-/* CARD */
+.swiper{
+width:100%;
+padding:30px 0 60px;
+}
 
+.swiper-slide{
+width:auto;
+height:auto;
+}
+
+/* Card */
+
+.card,
 .cert-card{
-    background:rgba(255,255,255,0.03);
-    border:1px solid rgba(255,255,255,0.08);
-    border-radius:18px;
-    padding:20px;
-    backdrop-filter:blur(12px);
-    transition:0.3s;
+background:linear-gradient(145deg,#121216,#1a1a22);
+border:1px solid #2f2f38;
+border-radius:16px;
+padding:24px;
+display:flex;
+flex-direction:column;
+height:100%;
+transition:.3s;
 }
 
+.card:hover,
 .cert-card:hover{
-    transform:translateY(-5px);
-    border-color:#00f2fe;
+transform:translateY(-4px);
+box-shadow:0 10px 25px rgba(0,242,254,.15);
 }
 
-.cert-badge{
-    display:inline-block;
-    background:#00f2fe20;
-    color:#00f2fe;
-    padding:6px 12px;
-    border-radius:30px;
-    font-size:0.75rem;
-    margin-bottom:15px;
-}
-
+.card h3,
 .cert-card h3{
-    color:#fff;
-    margin-bottom:8px;
+font-size:1.1rem;
+margin-bottom:10px;
 }
 
+.card p,
 .cert-card p{
-    color:#9ca3af;
-    font-size:0.9rem;
+line-height:1.7;
+flex-grow:1;
 }
-
-/* SKILLS */
 
 .cert-skills{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    margin:18px 0;
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin-top:18px;
 }
 
 .cert-skills span{
-    background:#1f2937;
-    color:#d1d5db;
-    padding:6px 10px;
-    border-radius:8px;
-    font-size:0.75rem;
+background:#1f2937;
+padding:6px 10px;
+border-radius:8px;
+font-size:.75rem;
 }
 
-/* BUTTON */
-
+.btn,
+.btn-detail,
 .cert-card button{
-    width:100%;
-    padding:12px;
-    border:none;
-    border-radius:12px;
-    background:#00f2fe;
-    color:#000;
-    font-weight:bold;
-    cursor:pointer;
-    transition:0.3s;
+width:100%;
+padding:12px;
+border-radius:10px;
+margin-top:16px;
 }
 
-.cert-card button:hover{
-    opacity:0.85;
+.swiper-button-next,
+.swiper-button-prev{
+color:#00f2fe!important;
+transform:scale(.75);
 }
 
-/* DESKTOP */
-
-@media(min-width:768px){
-
-    .cert-category{
-        grid-template-columns:
-        repeat(2,1fr);
-    }
-
+.swiper-pagination-bullet-active{
+background:#00f2fe!important;
 }
 
-@media(min-width:1100px){
-
-    .cert-category{
-        grid-template-columns:
-        repeat(3,1fr);
-    }
-
+/* ===================================================
+   RESPONSIVE HP
+   =================================================== */
+@media(max-width:768px){
+.stats-grid{
+grid-template-columns:1fr;
 }
 
-```css id="n1zr8h"
-/* =========================================
-   PREMIUM CERTIFICATE MODAL
-========================================= */
+.skills-box{
+grid-template-columns:1fr;
+}
 
+.about-card{
+min-width:100%;
+}
+
+.vault-header h1{
+font-size:1.6rem;
+}
+}
+
+//* ===================================================
+   8. PREMIUM MODAL POP-UP
+   Modal untuk preview sertifikat/detail
+=================================================== */
 .modal{
     display:none;
     position:fixed;
+    inset:0;
     z-index:9999;
-    left:0;
-    top:0;
-    width:100%;
-    height:100%;
     overflow-y:auto;
-    background:rgba(0,0,0,0.75);
+    background:rgba(0,0,0,.85);
     backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
     padding:20px;
     animation:fadeModal .3s ease;
 }
 
 @keyframes fadeModal{
-    from{
-        opacity:0;
-    }
-    to{
-        opacity:1;
-    }
+    from{opacity:0;}
+    to{opacity:1;}
 }
 
 .modal-content{
-    background:linear-gradient(
-        145deg,
-        #111827,
-        #0f172a
+    background:
+    linear-gradient(
+    145deg,
+    #111827,
+    #0f172a
     );
 
-    border:1px solid rgba(255,255,255,0.08);
-
-    max-width:700px;
-    width:100%;
-
-    margin:40px auto;
-
-    border-radius:24px;
-
-    padding:28px;
-
-    box-shadow:
-    0 0 40px rgba(0,255,200,0.08);
-
+    border:2px solid #00ff66;
+    width:min(550px,95%);
+    margin:60px auto;
+    padding:30px;
+    border-radius:18px;
     position:relative;
-
-    animation:modalUp .35s ease;
+    box-shadow:
+    0 0 30px
+    rgba(0,242,254,.12);
+    animation:
+    zoomIn .4s
+    cubic-bezier(
+    .175,
+    .885,
+    .32,
+    1.275
+    );
 }
 
-@keyframes modalUp{
-    from{
-        transform:translateY(30px);
-        opacity:0;
-    }
-    to{
-        transform:translateY(0);
-        opacity:1;
-    }
+@keyframes zoomIn{
+from{
+transform:scale(.7);
+opacity:0;
+}
+
+to{
+transform:scale(1);
+opacity:1;
+}
 }
 
 .close-btn{
-    position:absolute;
-    right:18px;
-    top:15px;
-
-    font-size:2rem;
-    color:#94a3b8;
-
-    cursor:pointer;
-
-    transition:0.3s;
+position:absolute;
+top:15px;
+right:20px;
+font-size:2rem;
+color:#8a8a93;
+cursor:pointer;
+transition:.3s;
 }
 
 .close-btn:hover{
-    color:#00f2fe;
-    transform:rotate(90deg);
+color:#00f2fe;
+transform:
+rotate(90deg);
 }
 
-/* IMAGE CERTIFICATE */
-
 .cert-preview{
-    width:100%;
-    border-radius:16px;
-    margin-top:20px;
-
-    border:1px solid rgba(255,255,255,0.08);
-
-    transition:0.3s;
+width:100%;
+border-radius:14px;
+margin-top:20px;
+border:
+1px solid
+rgba(255,255,255,.08);
+transition:.3s;
 }
 
 .cert-preview:hover{
-    transform:scale(1.01);
+transform:
+scale(1.01);
 }
 
-/* MOBILE */
+/* ===================================================
+   9. FOOTER
+   Footer tetap di bawah
+=================================================== */
 
-@media(max-width:768px){
-
-    .modal{
-        padding:12px;
-    }
-
-    .modal-content{
-        padding:20px;
-        border-radius:18px;
-        margin:20px auto;
-    }
-
+footer{
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+padding:15px;
+text-align:center;
+background:#070a12;
+color:#475569;
+font-size:.85rem;
+border-top:1px solid rgba(255,255,255,.05);
+z-index:999;
 }
 
-/* CATEGORY BUTTON */
+/* supaya konten tidak tertutup footer */
+.page{
+padding-bottom:70px;
+}
+
+/* ===================================================
+   10. VAULT / CERTIFICATE SYSTEM
+   Layout kartu sertifikat
+=================================================== */
+.vault-container{
+max-width:1200px;
+margin:auto;
+padding:20px;
+}
+
+.vault-header{
+text-align:center;
+margin-bottom:40px;
+}
+.vault-header h1{
+font-size:2.5rem;
+color:#fff;
+}
+
+.vault-header p{
+color:#a0aec0;
+}
+
 .vault-tabs{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-bottom:25px;
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:10px;
+margin-bottom:30px;
 }
 
 .vault-tab{
-    padding:10px 18px;
-    border:none;
-    border-radius:10px;
-    background:#111827;
-    color:#94a3b8;
-    cursor:pointer;
-    transition:0.3s;
-    font-weight:600;
+padding:10px 20px;
+background:#1a202c;
+color:#cbd5e0;
+border:
+1px solid
+#4a5568;
+border-radius:10px;
+cursor:pointer;
+transition:.3s;
 }
 
-.vault-tab:hover{
-    background:#06b6d4;
-    color:white;
+.vault-tab:hover,
+.vault-tab.active-tab{
+background:#00f2fe;
+color:#08111d;
+border-color:#00f2fe;
+box-shadow:
+0 0 15px
+rgba(0,242,254,.2);
 }
 
-.active-tab{
-    background:#06b6d4;
-    color:white;
-}
-
+/* Grid Sertifikat */
 .cert-category{
-    display:none;
+display:none;
+width:100%;
+margin-top:20px;
+gap:20px;
 }
 
-.active-category{
-    display:grid;
+.cert-category.active-category{
+display:grid;
+grid-template-columns:
+repeat(
+3,
+1fr
+);
 }
 
-    /* ==========================================================================
-   3. RESPONSIVE LAYER (UNTUK TAMPILAN HP)
-   ========================================================================== */
-@media screen and (max-width: 768px) {
-    /* 1. Berikan kelonggaran padding di HP agar konten tidak mepet */
-    .page {
-        padding: 30px 5% 100px 5%;
-    }
+/* Card Sertifikat */
 
-    /* 2. Ubah susunan Hero Home menjadi vertikal (atas-bawah) */
-    .hero {
-        flex-direction: column-reverse; /* Foto di atas, teks di bawah */
-        justify-content: center;
-        text-align: center;
-        gap: 20px;
-        height: auto;
-        margin-top: 20px;
-    }
-
-    .hero-text h1 {
-        font-size: 2.5rem; /* Perkecil ukuran font judul di HP */
-    }
-
-    .hero-text p {
-        margin: 15px auto 30px;
-    }
-
-    .img-wrapper {
-        width: 200px; /* Perkecil ukuran bingkai foto di HP */
-        height: 200px;
-    }
-
-    /* 3. SOLUSI UTAMA HALAMAN 2: Ubah layout About menjadi vertikal ke bawah */
-    .about-grid {
-        flex-direction: column;
-        gap: 25px;
-    }
-
-    .about-card {
-        min-width: 100%; /* Kartu informasi mahasiswa memenuhi lebar layar HP */
-    }
-
-    /* 4. Ubah grid skill menjadi 1 kolom saja di HP agar tidak sempit */
-    .skills-box {
-        grid-template-columns: 1fr;
-        width: 100%;
-    }
-    
-    .skill-item {
-        padding: 15px;
-    }
+.cert-card{
+background:#1a202c;
+border:
+1px solid
+#2d3748;
+border-radius:14px;
+padding:20px;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+transition:.3s;
 }
 
-    /* ==========================================================================
-   3. RESPONSIVE LAYER (UNTUK TAMPILAN HP)
-   ========================================================================== */
-@media screen and (max-width: 768px) {
-    /* 1. Berikan kelonggaran padding di HP agar konten tidak mepet */
-    .page {
-        padding: 30px 5% 100px 5%;
-    }
-
-    /* 2. Ubah susunan Hero Home menjadi vertikal (atas-bawah) */
-    .hero {
-        flex-direction: column-reverse; /* Foto di atas, teks di bawah */
-        justify-content: center;
-        text-align: center;
-        gap: 20px;
-        height: auto;
-        margin-top: 20px;
-    }
-
-    .hero-text h1 {
-        font-size: 2.5rem; /* Perkecil ukuran font judul di HP */
-    }
-
-    .hero-text p {
-        margin: 15px auto 30px;
-    }
-
-    .img-wrapper {
-        width: 200px; /* Perkecil ukuran bingkai foto di HP */
-        height: 200px;
-    }
-
-    /* 3. SOLUSI UTAMA HALAMAN 2: Ubah layout About menjadi vertikal ke bawah */
-    .about-grid {
-        flex-direction: column;
-        gap: 25px;
-    }
-
-    .about-card {
-        min-width: 100%; /* Kartu informasi mahasiswa memenuhi lebar layar HP */
-    }
-
-    /* 4. Ubah grid skill menjadi 1 kolom saja di HP agar tidak sempit */
-    .skills-box {
-        grid-template-columns: 1fr;
-        width: 100%;
-    }
-    
-    .skill-item {
-        padding: 15px;
-    }
+.cert-card:hover{
+transform:
+translateY(-5px);
+box-shadow:
+0 10px 20px
+rgba(0,0,0,.3);
 }
 
-    /* Khusus untuk layar HP (Maksimal lebar 768px) */
-@media (max-width: 768px) {
-    /* Memaksa kontainer agar lebarnya otomatis mengikuti layar HP */
-    .container, .vault-grid, .project-card { 
-        width: 100% !important;
-        max-width: 100% !important;
-        box-sizing: border-box;
-    }
-    
-    /* Mengecilkan ukuran font agar tidak memakan ruang dan terpotong */
-    h1 {
-        font-size: 1.8rem !important; /* Ukuran judul utama di HP */
-    }
-    h2 {
-        font-size: 1.4rem !important;
-    }
-    p, span, li {
-        font-size: 0.9rem !important; /* Ukuran teks isi di HP */
-    }
+.cert-badge{
+align-self:flex-end;
+padding:5px 12px;
+border-radius:20px;
+background:#2d3748;
+font-size:.8rem;
+font-weight:700;
 }
 
-    /* Memastikan tombol navigasi berada di lapisan paling atas dan mudah diklik */
-    .pagination, .nav-buttons, button { 
-        position: relative !important;
-        z-index: 9999 !important;
-        pointer-events: auto !important;
-        touch-action: manipulation; /* Mempercepat respon sentuhan di HP */
-    }
+.cert-card h3{
+margin:
+20px 0 10px;
+color:#fff;
+}
 
-    </style>
+.cert-card p{
+color:#a0aec0;
+line-height:1.6;
+}
+
+.cert-skills{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin:15px 0;
+}
+
+.cert-skills span{
+background:#2b6cb0;
+color:#fff;
+padding:
+5px 10px;
+border-radius:6px;
+font-size:.75rem;
+}
+
+.cert-card button{
+margin-top:auto;
+padding:10px;
+background:transparent;
+color:#00f2fe;
+border:
+1px solid
+#00f2fe;
+border-radius:8px;
+cursor:pointer;
+transition:.3s;
+}
+
+.cert-card button:hover{
+background:#00f2fe;
+color:#08111d;
+}
+
+/* ===================================================
+   11. RESPONSIVE
+   Optimasi HP & Tablet
+=================================================== */
+@media(max-width:992px){
+.cert-category.active-category{
+grid-template-columns:
+repeat(
+2,
+1fr
+);
+}
+}
+
+@media(max-width:768px){
+.modal{
+padding:12px;
+}
+
+.modal-content{
+width:95%;
+padding:20px;
+margin:20px auto;
+}
+
+.cert-category.active-category{
+grid-template-columns:1fr;
+}
+
+.card,
+.cert-card{
+box-shadow:none;
+transform:none;
+}
+
+footer{
+position:relative;
+}
+}
+
+@media(max-width:576px){
+.modal-content h2{
+font-size:1.1rem;
+}
+}
+
+</style>
+
 </head>
-<body>
+<div>
 
     <nav>
         <div class="logo">ALI AKBAR</div>
@@ -1229,7 +1012,7 @@ h1 {
                             <div id="sub-stats" class="sub-content">
                                 <div class="stats-grid">
                                     <div class="stat-box">
-                                        <h4>28</h4>
+                                        <h4>31</h4>
                                         <p>Sertifikat & Lisensi</p>
                                     </div>
                                     <div class="stat-box">
@@ -1243,7 +1026,7 @@ h1 {
                         </div>
                         <div class="hero-img-box">
                             <div class="img-wrapper">
-                                <img src="C:\Users\user\OneDrive\Dokumen\sertifikat\foto.jpeg" alt="Ali Akbar">
+                                <img src="" alt="Ali Akbar">
                             </div>
                         </div>
                     </div>
@@ -1418,827 +1201,594 @@ h1 {
             </div>
         </div>
 
-<!-- ========================= -->
-<!-- ⚡ DIGITAL ASSET VAULT -->
-<!-- ========================= -->
-
 <div id="certs" class="page">
+    <div class="vault-container">
 
-<div class="vault-container">
-
-    <!-- HEADER -->
-    <div class="vault-header">
-        <h1>⚡ DIGITAL ASSET VAULT</h1>
-        <p>
-            Verified Certifications, Technical Training,
-            Practical Skills & Continuous Learning
-        </p>
-    </div>
-
-    <!-- CATEGORY TAB -->
-<div class="vault-tabs">
-
-    <button class="vault-tab active-tab"
-        onclick="showCategory('bnsp', this)">
-        BNSP
-    </button>
-
-    <button class="vault-tab"
-        onclick="showCategory('lppm', this)">
-        LPPM
-    </button>
-
-    <button class="vault-tab"
-        onclick="showCategory('skills', this)">
-        Skills
-    </button>
-
-    <button class="vault-tab"
-        onclick="showCategory('webinar', this)">
-        Webinar
-    </button>
-
-</div>
-
-<!-- BNSP -->
-<div class="cert-category active-category" id="bnsp">
-
-    <!-- NETWORK -->
-    <div class="cert-card">
-        <span class="cert-badge">🏆 BNSP</span>
-        <h3>Junior Network Administrator</h3>
-        <p>LSP Media Informatika</p>
-
-        <div class="cert-skills">
-            <span>Routing</span>
-            <span>Subnetting</span>
-            <span>VLAN</span>
+        <div class="vault-header">
+            <h1>⚡ DIGITAL ASSET VAULT</h1>
+            <p>
+                Verified Certifications, Technical Training,
+                Practical Skills & Continuous Learning
+            </p>
         </div>
 
-        <button onclick="openModal('net-bnsp')">
-            View Details
-        </button>
-    </div>
-
-    <!-- CYBER -->
-    <div class="cert-card">
-        <span class="cert-badge">🛡️ BNSP</span>
-        <h3>Junior Cybersecurity Specialist</h3>
-        <p>LSP TIK Global</p>
-
-        <div class="cert-skills">
-            <span>Linux</span>
-            <span>Security</span>
-            <span>Cyber</span>
+        <div class="vault-tabs">
+            <button class="vault-tab active-tab" onclick="showCategory('bnsp', this)">BNSP</button>
+            <button class="vault-tab" onclick="showCategory('lppm', this)">LPPM</button>
+            <button class="vault-tab" onclick="showCategory('training', this)">Training</button>
+            <button class="vault-tab" onclick="showCategory('cyber', this)">Cyber Security</button>
+            <button class="vault-tab" onclick="showCategory('skills', this)">Skills</button>
+            <button class="vault-tab" onclick="showCategory('webinar', this)">Webinar</button>
         </div>
 
-        <button onclick="openModal('cyber-bnsp')">
-            View Details
-        </button>
-    </div>
+        <!-- ================= BNSP CATEGORY ================= -->
+        <div class="cert-category active-category" id="bnsp">
+            <div class="cert-card electrical">
+                <span class="cert-badge">🏆 BNSP</span>
+                <h3>Junior Network Administrator</h3>
+                <p>LSP Media Informatika</p>
+                <div class="cert-skills">
+                    <span>Routing</span>
+                    <span>Subnetting</span>
+                    <span>VLAN</span>
+                </div>
+                <button onclick="openModal('net-bnsp')">View Details</button>
+            </div>
 
-    <!-- OFFICE -->
-    <div class="cert-card">
-        <span class="cert-badge">💼 BNSP</span>
-        <h3>Junior Office Operator</h3>
-        <p>LSP Media Informatika</p>
+            <div class="cert-card cyber">
+                <span class="cert-badge">🛡️ BNSP</span>
+                <h3>Junior Cybersecurity Specialist</h3>
+                <p>LSP TIK Global</p>
+                <div class="cert-skills">
+                    <span>Linux</span>
+                    <span>Security</span>
+                    <span>Cyber</span>
+                </div>
+                <button onclick="openModal('cyber-bnsp')">View Details</button>
+            </div>
 
-        <div class="cert-skills">
-            <span>Word</span>
-            <span>Excel</span>
-            <span>PowerPoint</span>
+            <div class="cert-card general">
+                <span class="cert-badge">💼 BNSP</span>
+                <h3>Junior Office Operator</h3>
+                <p>LSP Media Informatika</p>
+                <div class="cert-skills">
+                    <span>Word</span>
+                    <span>Excel</span>
+                    <span>PowerPoint</span>
+                </div>
+                <button onclick="openModal('office-bnsp')">View Details</button>
+            </div>
+
+            <div class="cert-card content">
+                <span class="cert-badge">🎨 BNSP</span>
+                <h3>Junior Graphic Designer</h3>
+                <p>LSP Media Informatika</p>
+                <div class="cert-skills">
+                    <span>Design</span>
+                    <span>Creative</span>
+                    <span>Branding</span>
+                </div>
+                <button onclick="openModal('designer-bnsp')">View Details</button>
+            </div>
+
+            <div class="cert-card content">
+                <span class="cert-badge">📈 BNSP</span>
+                <h3>Digital Marketing Specialist</h3>
+                <p>National Certification</p>
+                <div class="cert-skills">
+                    <span>SEO</span>
+                    <span>Social Media</span>
+                    <span>Marketing</span>
+                </div>
+                <button onclick="openModal('marketing-bnsp')">View Details</button>
+            </div>
+
+            <div class="cert-card general">
+                <span class="cert-badge">👥 BNSP</span>
+                <h3>Human Resources Staff</h3>
+                <p>LSP MSDM Unggul Indonesia</p>
+                <div class="cert-skills">
+                    <span>HR</span>
+                    <span>Payroll</span>
+                    <span>Administration</span>
+                </div>
+                <button onclick="openModal('hr-bnsp')">View Details</button>
+            </div>
         </div>
 
-        <button onclick="openModal('office-bnsp')">
-            View Details
-        </button>
-    </div>
+        <!-- ================= LPPM CATEGORY ================= -->
+        <div class="cert-category" id="lppm">
+            <div class="cert-card electrical">
+                <span class="cert-badge">🌐 LPPM</span>
+                <h3>Pelatihan Jaringan Komputer</h3>
+                <p>Universitas Sapta Mandiri</p>
+                <div class="cert-skills">
+                    <span>Network</span>
+                    <span>LAN</span>
+                    <span>Routing</span>
+                </div>
+                <button onclick="openModal('net-lppm')">View Details</button>
+            </div>
 
-    <!-- DESIGN -->
-    <div class="cert-card">
-        <span class="cert-badge">🎨 BNSP</span>
-        <h3>Junior Graphic Designer</h3>
-        <p>LSP Media Informatika</p>
+            <div class="cert-card cyber">
+                <span class="cert-badge">🔒 LPPM</span>
+                <h3>Pelatihan Cyber Security</h3>
+                <p>Universitas Sapta Mandiri</p>
+                <div class="cert-skills">
+                    <span>Cyber</span>
+                    <span>Linux</span>
+                    <span>Security</span>
+                </div>
+                <button onclick="openModal('cyber-lppm')">View Details</button>
+            </div>
 
-        <div class="cert-skills">
-            <span>Design</span>
-            <span>Creative</span>
-            <span>Branding</span>
+            <div class="cert-card general">
+                <span class="cert-badge">💻 LPPM</span>
+                <h3>Pelatihan Teknisi Komputer</h3>
+                <p>Universitas Sapta Mandiri</p>
+                <div class="cert-skills">
+                    <span>Hardware</span>
+                    <span>BIOS</span>
+                    <span>Repair</span>
+                </div>
+                <button onclick="openModal('teknisi-lppm')">View Details</button>
+            </div>
+
+            <div class="cert-card content">
+                <span class="cert-badge">🧑‍💻 LPPM</span>
+                <h3>Pelatihan Konten Website</h3>
+                <p>Universitas Sapta Mandiri</p>
+                <div class="cert-skills">
+                    <span>Content</span>
+                    <span>Copywriting</span>
+                    <span>Social Media</span>
+                    <span>WordPress</span>
+                </div>
+                <button onclick="openModal('content-website-lppm')">View Details</button>
+            </div>
+
+            <div class="cert-card general">
+                <span class="cert-badge">💼 LPPM</span>
+                <h3>Pelatihan Office Operator</h3>
+                <p>Universitas Sapta Mandiri</p>
+                <div class="cert-skills">
+                    <span>Word</span>
+                    <span>Excel</span>
+                    <span>PowerPoint</span>
+                </div>
+                <button onclick="openModal('office-lppm')">View Details</button>
+            </div>
+
+            <div class="cert-card content">
+                <span class="cert-badge">🎨 LPPM</span>
+                <h3>Pelatihan Desain Grafis</h3>
+                <p>Universitas Sapta Mandiri</p>
+                <div class="cert-skills">
+                    <span>Design</span>
+                    <span>Vector</span>
+                    <span>Editing</span>
+                </div>
+                <button onclick="openModal('grafis-lppm')">View Details</button>
+            </div>
+
+            <div class="cert-card content">
+                <span class="cert-badge">📈 LPPM</span>
+                <h3>Digital Marketing Dasar</h3>
+                <p>Universitas Sapta Mandiri</p>
+                <div class="cert-skills">
+                    <span>SEO</span>
+                    <span>Branding</span>
+                    <span>Marketing</span>
+                </div>
+                <button onclick="openModal('market-dasar-lppm')">View Details</button>
+            </div>
+
+            <div class="cert-card content">
+                <span class="cert-badge">📱 LPPM</span>
+                <h3>Digital Marketing Sosmed</h3>
+                <p>Universitas Sapta Mandiri</p>
+                <div class="cert-skills">
+                    <span>Content</span>
+                    <span>Copywriting</span>
+                    <span>Social Media</span>
+                </div>
+                <button onclick="openModal('market-sosmed-lppm')">View Details</button>
+            </div>
+
+            <div class="cert-card general">
+                <span class="cert-badge">🗂️ LPPM</span>
+                <h3>Pelatihan Staff Administrasi</h3>
+                <p>Universitas Sapta Mandiri</p>
+                <div class="cert-skills">
+                    <span>Document</span>
+                    <span>Administration</span>
+                    <span>Management</span>
+                </div>
+                <button onclick="openModal('admin-lppm')">View Details</button>
+            </div>
+
+            <div class="cert-card general">
+                <span class="cert-badge">👨‍🔧 LPPM</span>
+                <h3>Front Office & Customer Service</h3>
+                <p>Universitas Sapta Mandiri</p>
+                <div class="cert-skills">
+                    <span>Komoniksi</span>
+                    <span>Attitude</span>
+                    <span>Body Language</span>
+                </div>
+                <button onclick="openModal('front-office-lppm')">View Details</button>
+            </div>
+
         </div>
 
-        <button onclick="openModal('designer-bnsp')">
-            View Details
-        </button>
-    </div>
+        <!-- ================= TRAINING CATEGORY ================= -->
+        <div class="cert-category" id="training">
+            <div class="cert-card cyber">
+                <span class="cert-badge">💻 LPK</span>
+                <h3>Web Programming Full Stack</h3>
+                <p>LPK Gevarion</p>
+                <div class="cert-skills">
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>JavaScript</span>
+                </div>
+                <button onclick="openModal('web-gevarion')">View Details</button>
+            </div>
 
-    <!-- DIGITAL MARKETING -->
-    <div class="cert-card">
-        <span class="cert-badge">📈 BNSP</span>
-        <h3>Digital Marketing Specialist</h3>
-        <p>National Certification</p>
+            <div class="cert-card electrical">
+                <span class="cert-badge">⚡ BLK</span>
+                <h3>Electrical Installation</h3>
+                <p>BLK Kabupaten Balangan</p>
+                <div class="cert-skills">
+                    <span>Instalasi</span>
+                    <span>Maintenance</span>
+                    <span>Maintenance</span>
+                    <span>KWH</span>
+                    <span>MCB</span>
+                    <span>Grounding</span>
+                    <span>Wiring</span>
+                    <span>Panel</span>
+                    <span>PUIL</span>
+                    <span>Troubleshooting</span>
+                </div> 
+                <button onclick="openModal('listrik-blk')">View Details</button>
+            </div>
 
-        <div class="cert-skills">
-            <span>SEO</span>
-            <span>Social Media</span>
-            <span>Marketing</span>
+            <div class="cert-card content">
+                <span class="cert-badge">📝 CONTENT</span>
+                <h3>Website Content Training</h3>
+                <p>Digital Talent Training</p>
+                <div class="cert-skills">
+                    <span>SEO</span>
+                    <span>Content</span>
+                    <span>CMS</span>
+                </div>
+                <button onclick="openModal('konten-pelatihan')">View Details</button>
+            </div>
+
+            <div class="cert-card general">
+                <span class="cert-badge">💼 LPPM</span>
+                <h3>Office Operator Training</h3>
+                <p>Universitas Sapta Mandiri</p>
+                <div class="cert-skills">
+                    <span>Word</span>
+                    <span>Excel</span>
+                    <span>PowerPoint</span>
+                </div>
+                <button onclick="openModal('office-lppm')">View Details</button>
+            </div>
+
+            <div class="cert-card content">
+                <span class="cert-badge">🎨 LPPM</span>
+                <h3>Graphic Design Training</h3>
+                <p>Universitas Sapta Mandiri</p>
+                <div class="cert-skills">
+                    <span>Design</span>
+                    <span>Branding</span>
+                    <span>Visual</span>
+                </div>
+                <button onclick="openModal('grafis-lppm')">View Details</button>
+            </div>
+
+            <div class="cert-card general">
+                <span class="cert-badge">⚙️ HARDWARE</span>
+                <h3>Computer Technician Training</h3>
+                <p>Universitas Sapta Mandiri</p>
+                <div class="cert-skills">
+                    <span>PC Assembly</span>
+                    <span>BIOS</span>
+                    <span>Troubleshooting</span>
+                </div>
+                <button onclick="openModal('teknisi-lppm')">View Details</button>
+            </div>
+
+            <div class="cert-card electrical">
+                <span class="cert-badge">🌐 NETWORK</span>
+                <h3>Computer Network Training</h3>
+                <p>Universitas Sapta Mandiri</p>
+                <div class="cert-skills">
+                    <span>IP Address</span>
+                    <span>Routing</span>
+                    <span>Wireless</span>
+                </div>
+                <button onclick="openModal('net-lppm')">View Details</button>
+            </div>
+
+            <div class="cert-card content">
+                <span class="cert-badge">📈 MARKETING</span>
+                <h3>Digital Marketing Training</h3>
+                <p>Universitas Sapta Mandiri</p>
+                <div class="cert-skills">
+                    <span>SEO</span>
+                    <span>Copywriting</span>
+                    <span>Social Media</span>
+                </div>
+                <button onclick="openModal('market-dasar-lppm')">View Details</button>
+            </div>
+
+            <div class="cert-card general">
+                <span class="cert-badge">🏢 ADMIN</span>
+                <h3>Administration Staff Training</h3>
+                <p>Universitas Sapta Mandiri</p>
+                <div class="cert-skills">
+                    <span>Administration</span>
+                    <span>Documents</span>
+                    <span>Management</span>
+                </div>
+                <button onclick="openModal('admin-lppm')">View Details</button>
+            </div>
         </div>
 
-        <button onclick="openModal('marketing-bnsp')">
-            View Details
-        </button>
-    </div>
+        <!-- ================= CYBER SECURITY CATEGORY ================= -->
+        <div class="cert-category" id="cyber">
+            <div class="cert-card cyber">
+                <span class="cert-badge">🛡️ TRYHACKME</span>
+                <h3>Advent of Cyber 2025</h3>
+                <p>TryHackMe International</p>
+                <div class="cert-skills">
+                    <span>Web Exploitation</span>
+                    <span>DFIR</span>
+                    <span>Cloud</span>
+                </div>
+                <button onclick="openModal('thm-2025')">View Details</button>
+            </div>
 
-    <!-- HR -->
-    <div class="cert-card">
-        <span class="cert-badge">👥 BNSP</span>
-        <h3>Human Resources Staff</h3>
-        <p>LSP MSDM Unggul Indonesia</p>
+            <div class="cert-card cyber">
+                <span class="cert-badge">🛡️ TRYHACKME</span>
+                <h3>Advent of Cyber 2024</h3>
+                <p>TryHackMe International</p>
+                <div class="cert-skills">
+                    <span>Linux</span>
+                    <span>Scanning</span>
+                    <span>Networking</span>
+                </div>
+                <button onclick="openModal('thm-2024')">View Details</button>
+            </div>
 
-        <div class="cert-skills">
-            <span>HR</span>
-            <span>Payroll</span>
-            <span>Administration</span>
+            <div class="cert-card cyber">
+                <span class="cert-badge">🏆 BNSP</span>
+                <h3>Junior Cybersecurity Specialist</h3>
+                <p>LSP TIK Global</p>
+                <div class="cert-skills">
+                    <span>Security</span>
+                    <span>Linux</span>
+                    <span>Cyber</span>
+                </div>
+                <button onclick="openModal('cyber-bnsp')">View Details</button>
+            </div>
+
+            <div class="cert-card cyber">
+                <span class="cert-badge">🎓 CAMPUS</span>
+                <h3>Cyber Security Training</h3>
+                <p>Universitas Sapta Mandiri</p>
+                <div class="cert-skills">
+                    <span>Cyber Hygiene</span>
+                    <span>Security</span>
+                    <span>Protection</span>
+                </div>
+                <button onclick="openModal('cyber-lppm')">View Details</button>
+            </div>
+
+            <div class="cert-card cyber">
+                <span class="cert-badge">🌐 WEBINAR</span>
+                <h3>Cyber Security 101</h3>
+                <p>Dunia Coding #109</p>
+                <div class="cert-skills">
+                    <span>Career</span>
+                    <span>Cyber</span>
+                    <span>Industry</span>
+                </div>
+                <button onclick="openModal('webinar-dc109')">View Details</button>
+            </div>
+
+            <div class="cert-card cyber">
+                <span class="cert-badge">🌐 WEBINAR</span>
+                <h3>Secure Website from AI Attack</h3>
+                <p>Dunia Coding #106</p>
+                <div class="cert-skills">
+                    <span>OWASP</span>
+                    <span>Security</span>
+                    <span>Website</span>
+                </div>
+                <button onclick="openModal('webinar-dc106')">View Details</button>
+            </div>
+
+            <div class="cert-card cyber">
+                <span class="cert-badge">🌐 WEBINAR</span>
+                <h3>Cyber Security Career Roadmap</h3>
+                <p>Dunia Coding #114</p>
+                <div class="cert-skills">
+                    <span>Roadmap</span>
+                    <span>Career</span>
+                    <span>Learning</span>
+                </div>
+                <button onclick="openModal('webinar-dc114')">View Details</button>
+            </div>
         </div>
 
-        <button onclick="openModal('hr-bnsp')">
-            View Details
-        </button>
-    </div>
+        <!-- ================= SKILLS CATEGORY ================= -->
+        <div class="cert-category" id="skills">
+            <div class="cert-card electrical">
+                <span class="cert-badge">⚡ BLK</span>
+                <h3>Electrical Installation</h3>
+                <p>BLK Kabupaten Balangan</p>
+                <div class="cert-skills">
+                    <span>MCB</span>
+                    <span>Wiring</span>
+                    <span>Panel</span>
+                </div>
+                <button onclick="openModal('listrik-blk')">View Details</button>
+            </div>
 
-</div>
+            <div class="cert-card general">
+                <span class="cert-badge">💈 BARBER</span>
+                <h3>Professional Barbershop</h3>
+                <p>CV Ad Diwani Group</p>
+                <div class="cert-skills">
+                    <span>Haircut</span>
+                    <span>Styling</span>
+                    <span>Service</span>
+                </div>
+                <button onclick="openModal('barber-diwani')">View Details</button>
+            </div>
 
+            <div class="cert-card general">
+                <span class="cert-badge">⚙️ HARDWARE</span>
+                <h3>Computer Technician</h3>
+                <p>Technical Hardware Skill</p>
+                <div class="cert-skills">
+                    <span>PC Assembly</span>
+                    <span>BIOS</span>
+                    <span>Troubleshooting</span>
+                </div>
+                <button onclick="openModal('teknisi-lppm')">View Details</button>
+            </div>
 
-   <!-- LPPM -->
-<div class="cert-category" id="lppm">
+            <div class="cert-card general">
+                <span class="cert-badge">💼 OFFICE</span>
+                <h3>Office Productivity</h3>
+                <p>Daily Academic & Administration</p>
+                <div class="cert-skills">
+                    <span>Word</span>
+                    <span>Excel</span>
+                    <span>Presentation</span>
+                </div>
+                <button onclick="openModal('office-bnsp')">View Details</button>
+            </div>
 
-    <!-- 1 -->
-    <div class="cert-card">
-        <span class="cert-badge">🌐 LPPM</span>
+            <div class="cert-card content">
+                <span class="cert-badge">🎨 DESIGN</span>
+                <h3>Graphic Design</h3>
+                <p>Media & Publication Division</p>
+                <div class="cert-skills">
+                    <span>Poster</span>
+                    <span>Branding</span>
+                    <span>Creative</span>
+                </div>
+                <button onclick="openModal('designer-bnsp')">View Details</button>
+            </div>
 
-        <h3>Pelatihan Jaringan Komputer</h3>
-
-        <p>Universitas Sapta Mandiri</p>
-
-        <div class="cert-skills">
-            <span>Network</span>
-            <span>LAN</span>
-            <span>Routing</span>
+            <div class="cert-card general">
+                <span class="cert-badge">🚗 SAFETY</span>
+                <h3>Driving Safety Certificate</h3>
+                <p>Operational Safety Knowledge</p>
+                <div class="cert-skills">
+                    <span>Safety</span>
+                    <span>Driving</span>
+                    <span>Discipline</span>
+                </div>
+                <button onclick="openModal('safety-driving')">View Details</button>
+            </div>
         </div>
 
-        <button onclick="openModal('net-lppm')">
-            View Details
-        </button>
-    </div>
+        <!-- ================= WEBINAR CATEGORY ================= -->
+        <div class="cert-category" id="webinar">
+            <div class="cert-card cyber">
+                <span class="cert-badge">🌐 WEBINAR</span>
+                <h3>Cyber Security 101</h3>
+                <p>Dunia Coding #109</p>
+                <div class="cert-skills">
+                    <span>Cyber</span>
+                    <span>Career</span>
+                    <span>Security</span>
+                </div>
+                <button onclick="openModal('webinar-dc109')">View Details</button>
+            </div>
 
-    <!-- 2 -->
-    <div class="cert-card">
-        <span class="cert-badge">🔒 LPPM</span>
+            <div class="cert-card cyber">
+                <span class="cert-badge">🌐 WEBINAR</span>
+                <h3>Secure Website from AI Attack</h3>
+                <p>Dunia Coding #106</p>
+                <div class="cert-skills">
+                    <span>OWASP</span>
+                    <span>Website</span>
+                    <span>Security</span>
+                </div>
+                <button onclick="openModal('webinar-dc106')">View Details</button>
+            </div>
 
-        <h3>Pelatihan Cyber Security</h3>
+            <div class="cert-card cyber">
+                <span class="cert-badge">🌐 WEBINAR</span>
+                <h3>Cyber Security Career Roadmap</h3>
+                <p>Dunia Coding #114</p>
+                <div class="cert-skills">
+                    <span>Roadmap</span>
+                    <span>Learning</span>
+                    <span>Industry</span>
+                </div>
+                <button onclick="openModal('webinar-dc114')">View Details</button>
+            </div>
 
-        <p>Universitas Sapta Mandiri</p>
+            <div class="cert-card cyber">
+                <span class="cert-badge">📊 DATA SCIENCE</span>
+                <h3>Future Data Science & AI</h3>
+                <p>Dunia Coding #104</p>
+                <div class="cert-skills">
+                    <span>Data</span>
+                    <span>AI</span>
+                    <span>Analytics</span>
+                </div>
+                <button onclick="openModal('webinar-dc104')">View Details</button>
+            </div>
 
-        <div class="cert-skills">
-            <span>Cyber</span>
-            <span>Linux</span>
-            <span>Security</span>
+            <div class="cert-card cyber">
+                <span class="cert-badge">💻 SOFTWARE</span>
+                <h3>Software Engineer Workflow</h3>
+                <p>Dunia Coding #111</p>
+                <div class="cert-skills">
+                    <span>Git</span>
+                    <span>Workflow</span>
+                    <span>Collaboration</span>
+                </div>
+                <button onclick="openModal('webinar-dc111')">View Details</button>
+            </div>
+
+            <div class="cert-card content">
+                <span class="cert-badge">🛠️ WORKSHOP</span>
+                <h3>UI/UX Landing Page Workshop</h3>
+                <p>Dunia Coding Interactive Workshop</p>
+                <div class="cert-skills">
+                    <span>UI/UX</span>
+                    <span>Gamification</span>
+                    <span>Landing Page</span>
+                </div>
+                <button onclick="openModal('workshop-uiux')">View Details</button>
+            </div>
+
+            <div class="cert-card content">
+                <span class="cert-badge">🚀 NO CODE</span>
+                <h3>Build Website Without Coding</h3>
+                <p>Dunia Coding #100</p>
+                <div class="cert-skills">
+                    <span>No-Code</span>
+                    <span>CMS</span>
+                    <span>Website</span>
+                </div>
+                <button onclick="openModal('webinar-dc100')">View Details</button>
+            </div>
         </div>
 
-        <button onclick="openModal('cyber-lppm')">
-            View Details
-        </button>
     </div>
-
-    <!-- 3 -->
-    <div class="cert-card">
-        <span class="cert-badge">💻 LPPM</span>
-
-        <h3>Pelatihan Teknisi Komputer</h3>
-
-        <p>Universitas Sapta Mandiri</p>
-
-        <div class="cert-skills">
-            <span>Hardware</span>
-            <span>BIOS</span>
-            <span>Repair</span>
-        </div>
-
-        <button onclick="openModal('teknisi-lppm')">
-            View Details
-        </button>
-    </div>
-
-    <!-- 4 -->
-    <div class="cert-card">
-        <span class="cert-badge">💼 LPPM</span>
-
-        <h3>Pelatihan Office Operator</h3>
-
-        <p>Universitas Sapta Mandiri</p>
-
-        <div class="cert-skills">
-            <span>Word</span>
-            <span>Excel</span>
-            <span>PowerPoint</span>
-        </div>
-
-        <button onclick="openModal('office-lppm')">
-            View Details
-        </button>
-    </div>
-
-    <!-- 5 -->
-    <div class="cert-card">
-        <span class="cert-badge">🎨 LPPM</span>
-
-        <h3>Pelatihan Desain Grafis</h3>
-
-        <p>Universitas Sapta Mandiri</p>
-
-        <div class="cert-skills">
-            <span>Design</span>
-            <span>Vector</span>
-            <span>Editing</span>
-        </div>
-
-        <button onclick="openModal('grafis-lppm')">
-            View Details
-        </button>
-    </div>
-
-    <!-- 6 -->
-    <div class="cert-card">
-        <span class="cert-badge">📈 LPPM</span>
-
-        <h3>Digital Marketing Dasar</h3>
-
-        <p>Universitas Sapta Mandiri</p>
-
-        <div class="cert-skills">
-            <span>SEO</span>
-            <span>Branding</span>
-            <span>Marketing</span>
-        </div>
-
-        <button onclick="openModal('market-dasar-lppm')">
-            View Details
-        </button>
-    </div>
-
-    <!-- 7 -->
-    <div class="cert-card">
-        <span class="cert-badge">📱 LPPM</span>
-
-        <h3>Digital Marketing Sosmed</h3>
-
-        <p>Universitas Sapta Mandiri</p>
-
-        <div class="cert-skills">
-            <span>Content</span>
-            <span>Copywriting</span>
-            <span>Social Media</span>
-        </div>
-
-        <button onclick="openModal('market-sosmed-lppm')">
-            View Details
-        </button>
-    </div>
-
-    <!-- 8 -->
-    <div class="cert-card">
-        <span class="cert-badge">🗂️ LPPM</span>
-
-        <h3>Pelatihan Staff Administrasi</h3>
-
-        <p>Universitas Sapta Mandiri</p>
-
-        <div class="cert-skills">
-            <span>Document</span>
-            <span>Administration</span>
-            <span>Management</span>
-        </div>
-
-        <button onclick="openModal('admin-lppm')">
-            View Details
-        </button>
-    </div>
-
-</div>
-
-<!-- TRAINING -->
-<div class="cert-category" id="training">
-
-    <!-- WEB PROGRAMMING -->
-    <div class="cert-card">
-        <span class="cert-badge">💻 LPK</span>
-        <h3>Web Programming Full Stack</h3>
-        <p>LPK Gevarion</p>
-
-        <div class="cert-skills">
-            <span>HTML</span>
-            <span>CSS</span>
-            <span>JavaScript</span>
-        </div>
-
-        <button onclick="openModal('web-gevarion')">
-            View Details
-        </button>
-    </div>
-
-    <!-- ELECTRICAL -->
-    <div class="cert-card">
-        <span class="cert-badge">⚡ BLK</span>
-        <h3>Electrical Installation</h3>
-        <p>BLK Kabupaten Balangan</p>
-
-        <div class="cert-skills">
-            <span>MCB</span>
-            <span>Wiring</span>
-            <span>Panel</span>
-        </div>
-
-        <button onclick="openModal('listrik-blk')">
-            View Details
-        </button>
-    </div>
-
-    <!-- CONTENT WEBSITE -->
-    <div class="cert-card">
-        <span class="cert-badge">📝 CONTENT</span>
-        <h3>Website Content Training</h3>
-        <p>Digital Talent Training</p>
-
-        <div class="cert-skills">
-            <span>SEO</span>
-            <span>Content</span>
-            <span>CMS</span>
-        </div>
-
-        <button onclick="openModal('konten-pelatihan')">
-            View Details
-        </button>
-    </div>
-
-    <!-- OFFICE -->
-    <div class="cert-card">
-        <span class="cert-badge">💼 LPPM</span>
-        <h3>Office Operator Training</h3>
-        <p>Universitas Sapta Mandiri</p>
-
-        <div class="cert-skills">
-            <span>Word</span>
-            <span>Excel</span>
-            <span>PowerPoint</span>
-        </div>
-
-        <button onclick="openModal('office-lppm')">
-            View Details
-        </button>
-    </div>
-
-    <!-- DESIGN -->
-    <div class="cert-card">
-        <span class="cert-badge">🎨 LPPM</span>
-        <h3>Graphic Design Training</h3>
-        <p>Universitas Sapta Mandiri</p>
-
-        <div class="cert-skills">
-            <span>Design</span>
-            <span>Branding</span>
-            <span>Visual</span>
-        </div>
-
-        <button onclick="openModal('grafis-lppm')">
-            View Details
-        </button>
-    </div>
-
-    <!-- COMPUTER TECHNICIAN -->
-    <div class="cert-card">
-        <span class="cert-badge">⚙️ HARDWARE</span>
-        <h3>Computer Technician Training</h3>
-        <p>Universitas Sapta Mandiri</p>
-
-        <div class="cert-skills">
-            <span>PC Assembly</span>
-            <span>BIOS</span>
-            <span>Troubleshooting</span>
-        </div>
-
-        <button onclick="openModal('teknisi-lppm')">
-            View Details
-        </button>
-    </div>
-
-    <!-- NETWORK -->
-    <div class="cert-card">
-        <span class="cert-badge">🌐 NETWORK</span>
-        <h3>Computer Network Training</h3>
-        <p>Universitas Sapta Mandiri</p>
-
-        <div class="cert-skills">
-            <span>IP Address</span>
-            <span>Routing</span>
-            <span>Wireless</span>
-        </div>
-
-        <button onclick="openModal('net-lppm')">
-            View Details
-        </button>
-    </div>
-
-    <!-- DIGITAL MARKETING -->
-    <div class="cert-card">
-        <span class="cert-badge">📈 MARKETING</span>
-        <h3>Digital Marketing Training</h3>
-        <p>Universitas Sapta Mandiri</p>
-
-        <div class="cert-skills">
-            <span>SEO</span>
-            <span>Copywriting</span>
-            <span>Social Media</span>
-        </div>
-
-        <button onclick="openModal('market-dasar-lppm')">
-            View Details
-        </button>
-    </div>
-
-    <!-- ADMIN -->
-    <div class="cert-card">
-        <span class="cert-badge">🏢 ADMIN</span>
-        <h3>Administration Staff Training</h3>
-        <p>Universitas Sapta Mandiri</p>
-
-        <div class="cert-skills">
-            <span>Administration</span>
-            <span>Documents</span>
-            <span>Management</span>
-        </div>
-
-        <button onclick="openModal('admin-lppm')">
-            View Details
-        </button>
-    </div>
-
-</div>
-
-
-<!-- CYBER -->
-<div class="cert-category" id="cyber">
-
-    <!-- THM 2025 -->
-    <div class="cert-card">
-        <span class="cert-badge">🛡️ TRYHACKME</span>
-        <h3>Advent of Cyber 2025</h3>
-        <p>TryHackMe International</p>
-
-        <div class="cert-skills">
-            <span>Web Exploitation</span>
-            <span>DFIR</span>
-            <span>Cloud</span>
-        </div>
-
-        <button onclick="openModal('thm-2025')">
-            View Details
-        </button>
-    </div>
-
-    <!-- THM 2024 -->
-    <div class="cert-card">
-        <span class="cert-badge">🛡️ TRYHACKME</span>
-        <h3>Advent of Cyber 2024</h3>
-        <p>TryHackMe International</p>
-
-        <div class="cert-skills">
-            <span>Linux</span>
-            <span>Scanning</span>
-            <span>Networking</span>
-        </div>
-
-        <button onclick="openModal('thm-2024')">
-            View Details
-        </button>
-    </div>
-
-    <!-- CYBER BNSP -->
-    <div class="cert-card">
-        <span class="cert-badge">🏆 BNSP</span>
-        <h3>Junior Cybersecurity Specialist</h3>
-        <p>LSP TIK Global</p>
-
-        <div class="cert-skills">
-            <span>Security</span>
-            <span>Linux</span>
-            <span>Cyber</span>
-        </div>
-
-        <button onclick="openModal('cyber-bnsp')">
-            View Details
-        </button>
-    </div>
-
-    <!-- CYBER LPPM -->
-    <div class="cert-card">
-        <span class="cert-badge">🎓 CAMPUS</span>
-        <h3>Cyber Security Training</h3>
-        <p>Universitas Sapta Mandiri</p>
-
-        <div class="cert-skills">
-            <span>Cyber Hygiene</span>
-            <span>Security</span>
-            <span>Protection</span>
-        </div>
-
-        <button onclick="openModal('cyber-lppm')">
-            View Details
-        </button>
-    </div>
-
-    <!-- WEBINAR 109 -->
-    <div class="cert-card">
-        <span class="cert-badge">🌐 WEBINAR</span>
-        <h3>Cyber Security 101</h3>
-        <p>Dunia Coding #109</p>
-
-        <div class="cert-skills">
-            <span>Career</span>
-            <span>Cyber</span>
-            <span>Industry</span>
-        </div>
-
-        <button onclick="openModal('webinar-dc109')">
-            View Details
-        </button>
-    </div>
-
-    <!-- WEBINAR 106 -->
-    <div class="cert-card">
-        <span class="cert-badge">🌐 WEBINAR</span>
-        <h3>Secure Website from AI Attack</h3>
-        <p>Dunia Coding #106</p>
-
-        <div class="cert-skills">
-            <span>OWASP</span>
-            <span>Security</span>
-            <span>Website</span>
-        </div>
-
-        <button onclick="openModal('webinar-dc106')">
-            View Details
-        </button>
-    </div>
-
-    <!-- WEBINAR 114 -->
-    <div class="cert-card">
-        <span class="cert-badge">🌐 WEBINAR</span>
-        <h3>Cyber Security Career Roadmap</h3>
-        <p>Dunia Coding #114</p>
-
-        <div class="cert-skills">
-            <span>Roadmap</span>
-            <span>Career</span>
-            <span>Learning</span>
-        </div>
-
-        <button onclick="openModal('webinar-dc114')">
-            View Details
-        </button>
-    </div>
-
-</div>
-
-<!-- SKILLS -->
-<div class="cert-category" id="skills">
-
-    <!-- ELECTRICAL -->
-    <div class="cert-card">
-        <span class="cert-badge">⚡ BLK</span>
-        <h3>Electrical Installation</h3>
-        <p>BLK Kabupaten Balangan</p>
-
-        <div class="cert-skills">
-            <span>MCB</span>
-            <span>Wiring</span>
-            <span>Panel</span>
-        </div>
-
-        <button onclick="openModal('listrik-blk')">
-            View Details
-        </button>
-    </div>
-
-    <!-- BARBER -->
-    <div class="cert-card">
-        <span class="cert-badge">💈 BARBER</span>
-        <h3>Professional Barbershop</h3>
-        <p>CV Ad Diwani Group</p>
-
-        <div class="cert-skills">
-            <span>Haircut</span>
-            <span>Styling</span>
-            <span>Service</span>
-        </div>
-
-        <button onclick="openModal('barber-diwani')">
-            View Details
-        </button>
-    </div>
-
-    <!-- COMPUTER TECH -->
-    <div class="cert-card">
-        <span class="cert-badge">⚙️ HARDWARE</span>
-        <h3>Computer Technician</h3>
-        <p>Technical Hardware Skill</p>
-
-        <div class="cert-skills">
-            <span>PC Assembly</span>
-            <span>BIOS</span>
-            <span>Troubleshooting</span>
-        </div>
-
-        <button onclick="openModal('teknisi-lppm')">
-            View Details
-        </button>
-    </div>
-
-    <!-- OFFICE -->
-    <div class="cert-card">
-        <span class="cert-badge">💼 OFFICE</span>
-        <h3>Office Productivity</h3>
-        <p>Daily Academic & Administration</p>
-
-        <div class="cert-skills">
-            <span>Word</span>
-            <span>Excel</span>
-            <span>Presentation</span>
-        </div>
-
-        <button onclick="openModal('office-bnsp')">
-            View Details
-        </button>
-    </div>
-
-    <!-- GRAPHIC DESIGN -->
-    <div class="cert-card">
-        <span class="cert-badge">🎨 DESIGN</span>
-        <h3>Graphic Design</h3>
-        <p>Media & Publication Division</p>
-
-        <div class="cert-skills">
-            <span>Poster</span>
-            <span>Branding</span>
-            <span>Creative</span>
-        </div>
-
-        <button onclick="openModal('designer-bnsp')">
-            View Details
-        </button>
-    </div>
-
-    <!-- DRIVING -->
-    <div class="cert-card">
-        <span class="cert-badge">🚗 SAFETY</span>
-        <h3>Driving Safety Certificate</h3>
-        <p>Operational Safety Knowledge</p>
-
-        <div class="cert-skills">
-            <span>Safety</span>
-            <span>Driving</span>
-            <span>Discipline</span>
-        </div>
-
-        <button onclick="openModal('safety-driving')">
-            View Details
-        </button>
-    </div>
-
-</div>
-
-<!-- WEBINAR -->
-<div class="cert-category" id="webinar">
-
-    <!-- WEBINAR 109 -->
-    <div class="cert-card">
-        <span class="cert-badge">🌐 WEBINAR</span>
-        <h3>Cyber Security 101</h3>
-        <p>Dunia Coding #109</p>
-
-        <div class="cert-skills">
-            <span>Cyber</span>
-            <span>Career</span>
-            <span>Security</span>
-        </div>
-
-        <button onclick="openModal('webinar-dc109')">
-            View Details
-        </button>
-    </div>
-
-    <!-- WEBINAR 106 -->
-    <div class="cert-card">
-        <span class="cert-badge">🌐 WEBINAR</span>
-        <h3>Secure Website from AI Attack</h3>
-        <p>Dunia Coding #106</p>
-
-        <div class="cert-skills">
-            <span>OWASP</span>
-            <span>Website</span>
-            <span>Security</span>
-        </div>
-
-        <button onclick="openModal('webinar-dc106')">
-            View Details
-        </button>
-    </div>
-
-    <!-- WEBINAR 114 -->
-    <div class="cert-card">
-        <span class="cert-badge">🌐 WEBINAR</span>
-        <h3>Cyber Security Career Roadmap</h3>
-        <p>Dunia Coding #114</p>
-
-        <div class="cert-skills">
-            <span>Roadmap</span>
-            <span>Learning</span>
-            <span>Industry</span>
-        </div>
-
-        <button onclick="openModal('webinar-dc114')">
-            View Details
-        </button>
-    </div>
-
-    <!-- WEBINAR 104 -->
-    <div class="cert-card">
-        <span class="cert-badge">📊 DATA SCIENCE</span>
-        <h3>Future Data Science & AI</h3>
-        <p>Dunia Coding #104</p>
-
-        <div class="cert-skills">
-            <span>Data</span>
-            <span>AI</span>
-            <span>Analytics</span>
-        </div>
-
-        <button onclick="openModal('webinar-dc104')">
-            View Details
-        </button>
-    </div>
-
-    <!-- WEBINAR 111 -->
-    <div class="cert-card">
-        <span class="cert-badge">💻 SOFTWARE</span>
-        <h3>Software Engineer Workflow</h3>
-        <p>Dunia Coding #111</p>
-
-        <div class="cert-skills">
-            <span>Git</span>
-            <span>Workflow</span>
-            <span>Collaboration</span>
-        </div>
-
-        <button onclick="openModal('webinar-dc111')">
-            View Details
-        </button>
-    </div>
-
-    <!-- WORKSHOP UIUX -->
-    <div class="cert-card">
-        <span class="cert-badge">🛠️ WORKSHOP</span>
-        <h3>UI/UX Landing Page Workshop</h3>
-        <p>Dunia Coding Interactive Workshop</p>
-
-        <div class="cert-skills">
-            <span>UI/UX</span>
-            <span>Gamification</span>
-            <span>Landing Page</span>
-        </div>
-
-        <button onclick="openModal('workshop-uiux')">
-            View Details
-        </button>
-    </div>
-
-    <!-- WEBINAR 100 -->
-    <div class="cert-card">
-        <span class="cert-badge">🚀 NO CODE</span>
-        <h3>Build Website Without Coding</h3>
-        <p>Dunia Coding #100</p>
-
-        <div class="cert-skills">
-            <span>No-Code</span>
-            <span>CMS</span>
-            <span>Website</span>
-        </div>
-
-        <button onclick="openModal('webinar-dc100')">
-            View Details
-        </button>
-    </div>
-
-</div>
-</div>
 </div>
 
 <!-- FEATURED PROJECTS -->
@@ -2317,7 +1867,6 @@ h1 {
                 <button class="sub-page-btn" onclick="changeSubPage('projects', 2, this)">2</button>
             </div>
         </div>
-
     </div>
 
     <footer>
@@ -2427,6 +1976,35 @@ function showCategory(categoryId, button){
 
     document.getElementById(categoryId)
     .classList.add('active-category');
+}
+
+function showCategory(categoryId, element) {
+    // 1. Sembunyikan semua kategori sertifikat
+    const categories = document.querySelectorAll('.cert-category');
+    categories.forEach(category => {
+        category.classList.remove('active-category');
+    });
+
+    // 2. Hapus status active dari semua tombol tab
+    const tabs = document.querySelectorAll('.vault-tab');
+    tabs.forEach(tab => {
+        tab.classList.remove('active-tab');
+    });
+
+    // 3. Tampilkan kategori yang dipilih
+    const activeCategory = document.getElementById(categoryId);
+    if (activeCategory) {
+        activeCategory.classList.add('active-category');
+    }
+
+    // 4. Tambahkan status active ke tombol yang sedang diklik
+    element.classList.add('active-tab');
+}
+
+// Fungsi Modal (Placeholder jika ingin menampilkan gambar sertifikat pop-up)
+function openModal(certId) {
+    console.log("Membuka detail sertifikat ID: " + certId);
+    // Tambahkan logika modal pop-up gambar sertifikat di sini jika diperlukan
 }
 
     </script>
